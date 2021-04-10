@@ -4,7 +4,7 @@ Trying Test Driven Development in JavaScript by Examples - VerifyPassword, Strin
 ## :camera_flash: Screenshots
 
 ### StringCalculator Tests
-<img src="/raw/jest.png" width="400">
+<img src="/raw/jest.png" width="800">
 
 ### Verifyer Tests
-<img src="/raw/jest_2.PNG" width="400">
+<img src="/raw/jest_2.PNG" width="800">
