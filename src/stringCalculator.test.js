@@ -43,21 +43,26 @@ describe("StringCalculator", () => {
 
   test("Two negative numbers, Passes", () => {
     const result = () => stringCalculator("-1,-34");
-    expect(result).toThrow("negatives not allowed");
+    expect(result).toThrow("negatives not allowed: -1, -34");
   });
 
   test("First positive other negative numbers, Passes", () => {
     const result = () => stringCalculator("5,-1,-34");
-    expect(result).toThrow("negatives not allowed");
+    expect(result).toThrow("negatives not allowed: -1, -34");
   });
 
   test("First positive other negative numbers, Passes", () => {
     const result = () => stringCalculator("5,-13,-34");
-    expect(result).toThrow("negatives not allowed");
+    expect(result).toThrow("negatives not allowed: -13, -34");
   });
 
   test("Last value is not a number, Passes", () => {
     const result = stringCalculator("5,8, 9, 7, 8***");
+    expect(result).toBe(37);
+  });
+
+  test("Numbers bigger than 1000 should be ignored, Passes", () => {
+    const result = stringCalculator("5,8, 9, 7, 1001, 8***");
     expect(result).toBe(37);
   });
 });

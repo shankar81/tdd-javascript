@@ -4,6 +4,7 @@ function isValidNumber(input) {
 
 function stringCalculator(input) {
   let result = 0;
+  let negatives = [];
   if (input.length === 0) {
     return 0;
   } else if (input.length === 1) {
@@ -29,7 +30,15 @@ function stringCalculator(input) {
         prev += curr;
       } else {
         // If current value is other than number then add prev to result and make prev again null
-        result += Number(prev);
+        // If contacatnetad prev is greater than 1000 then it should be ignored
+        if (Number(prev) <= 1000) {
+          result += Number(prev);
+        }
+
+        // Adding negatives to the array
+        if (prev < 0) {
+          negatives.push(prev);
+        }
         prev = null;
       }
     } else {
@@ -40,12 +49,18 @@ function stringCalculator(input) {
 
     // If last index then add it to result
     if (i === input.length - 1) {
+      // Adding negatives to the array
+      if (prev < 0) {
+        negatives.push(prev);
+      }
       result += Number(prev);
     }
+  }
 
-    if (result < 0) {
-      throw new Error("negatives not allowed");
-    }
+  if (negatives.length === 1) {
+    throw new Error("negatives not allowed");
+  } else if (negatives.length > 1) {
+    throw new Error(`negatives not allowed: ${negatives.join(", ")}`);
   }
 
   return result;
